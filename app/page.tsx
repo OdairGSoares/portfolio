@@ -85,15 +85,17 @@ export default function Home() {
       description: "Apresentação interativa em 3D do tênis Nike Dunk Low utilizando React, Three.js e TailwindCSS",
       image: "/shoe-3d-presentation.jpg",
       alt: "Nike DunkLow 3D Model",
-      year: "2025"
+      year: "2025",
+      url: "https://dunk-low-3d-website.vercel.app/"
     },
     {
       id: 2,
-      title: "E-commerce VTEX IO",
-      description: "Desenvolvimento de loja virtual completa utilizando VTEX IO, React e Node.js",
-      image: "/placeholder.svg?height=990&width=1440",
-      alt: "E-commerce Project",
-      year: "2023"
+      title: "Attriuzen Portfólio",
+      description: "Landing page e portfólio musical desenvolvido com React e TailwindCSS para o músico artista Attriuzen",
+      image: "/attriuzen-portfólio.jpg",
+      alt: "Attriuzen Portfolio",
+      year: "2024",
+      url: "https://attriuzen-portfolio-odairgsoares-projects.vercel.app/"
     },
     {
       id: 3,
@@ -101,7 +103,8 @@ export default function Home() {
       description: "Aplicação fullstack com PHP 8, MySQL e React para gestão empresarial",
       image: "/placeholder.svg?height=990&width=1440",
       alt: "Web System",
-      year: "2022"
+      year: "2022",
+      url: "https://sistema-gestao.vercel.app"
     },
     {
       id: 4,
@@ -109,7 +112,8 @@ export default function Home() {
       description: "Desenvolvimento de tema personalizado e plugins para WordPress",
       image: "/placeholder.svg?height=990&width=1440",
       alt: "WordPress Portal",
-      year: "2021"
+      year: "2021",
+      url: "https://portal-corporativo.com.br"
     }
   ]
 
@@ -423,7 +427,13 @@ export default function Home() {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {projects.map((project) => (
-                  <div key={project.id} className="group relative overflow-hidden">
+                  <a
+                    key={project.id}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative overflow-hidden block"
+                  >
                     <div className="aspect-[1440/990] bg-gray-900 overflow-hidden">
                       <img
                         src={project.image}
@@ -439,7 +449,7 @@ export default function Home() {
                         <span className="text-xs text-gray-400">{project.year}</span>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
