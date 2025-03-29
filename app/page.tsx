@@ -99,12 +99,12 @@ export default function Home() {
     },
     {
       id: 3,
-      title: "Sistema de Gestão Web",
-      description: "Aplicação fullstack com PHP 8, MySQL e React para gestão empresarial",
-      image: "/placeholder.svg?height=990&width=1440",
-      alt: "Web System",
-      year: "2022",
-      url: "https://sistema-gestao.vercel.app"
+      title: "301digital - Agência de Marketing",
+      description: "Sistema completo com painel administrativo personalizado, websites via subdomínio e construtor de sites integrado",
+      image: "/digital-301.jpg",
+      alt: "301digital Marketing Agency",
+      year: "2023",
+      url: "https://301digital.com.br/"
     },
     {
       id: 4,
