@@ -5,7 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Canvas } from "@react-three/fiber"
 import { PerspectiveCamera, Environment, Float, OrbitControls } from "@react-three/drei"
-import { Instagram, DribbbleIcon as Behance, Dribbble, ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
+import { Instagram, DribbbleIcon as Behance, Dribbble, ChevronLeft, ChevronRight, Menu, X, Linkedin, Github } from "lucide-react"
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 
 // 3D Model component
@@ -108,12 +108,12 @@ export default function Home() {
     },
     {
       id: 4,
-      title: "Portal Corporativo WordPress",
-      description: "Desenvolvimento de tema personalizado e plugins para WordPress",
-      image: "/placeholder.svg?height=990&width=1440",
-      alt: "WordPress Portal",
-      year: "2021",
-      url: "https://portal-corporativo.com.br"
+      title: "Care Idosos",
+      description: "Página com painel administrativo para cuidados com pessoas idosas",
+      image: "/care-idosos.jpg",
+      alt: "Care Idosos",
+      year: "2023",
+      url: "https://care-idosos-connect.vercel.app/"
     }
   ]
 
@@ -154,11 +154,11 @@ export default function Home() {
   const socialLinks = [
     {
       url: "https://www.linkedin.com/in/odair-gomes-9baab01ab",
-      icon: <Instagram size={20} />
+      icon: <Linkedin size={20} />
     },
     {
       url: "https://github.com/OdairGSoares",
-      icon: <Behance size={20} />
+      icon: <Github size={20} />
     }
   ]
 
@@ -303,10 +303,10 @@ export default function Home() {
                 <span className="text-[#0066cc]">IR</span>
                 <span className="text-[#0066cc]">.</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-400 mb-8">Desenvolvedor Web Fullstack</p>
+              <p className="text-lg sm:text-xl text-gray-400 mb-8">Web Designer</p>
               <div className="flex items-center space-x-4">
                 <div className="w-8 sm:w-12 h-[1px] bg-[#0066cc]" />
-                <span className="text-xs sm:text-sm text-gray-400">Portfólio 2024</span>
+                <span className="text-xs sm:text-sm text-gray-400">Portfólio 2025</span>
               </div>
             </motion.div>
           </div>
@@ -344,19 +344,21 @@ export default function Home() {
                 <div className="xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
                   <div>
                     <h2 className="text-4xl font-bold mb-8">
-                      Desenvolvedor Web Fullstack com foco em soluções digitais inovadoras
+                      Web Designer com foco em soluções digitais inovadoras
                     </h2>
 
                     <p className="text-gray-400 mb-6">
-                      Olá! Sou Odair Gomes Soares, um desenvolvedor fullstack de 23 anos com paixão por criar experiências web 
-                      excepcionais. Combino habilidades técnicas em desenvolvimento com conhecimentos em UI/UX e web design para 
-                      entregar soluções completas e inovadoras.
+                      Olá! Sou Odair Gomes Soares, um web designer de 23 anos com paixão por criar experiências visuais impactantes 
+                      e funcionais na web. Combino senso estético, usabilidade e conhecimento técnico para desenvolver interfaces 
+                      modernas, criativas e centradas no usuário.
                     </p>
 
                     <p className="text-gray-400 mb-6">
-                      Minha jornada começou como designer gráfico, evoluindo para desenvolvimento web fullstack. Hoje, 
-                      especializo-me em criar aplicações web modernas utilizando tecnologias como React, Node.js, SQL e Python, 
-                      sempre focando em código limpo e experiências de usuário intuitivas.
+                      Minha jornada começou como designer gráfico e evoluiu para o universo do design digital. 
+                      Hoje, especializo-me na criação de layouts responsivos, identidades visuais para ambientes 
+                      online e projetos que aliam UI/UX, acessibilidade e performance visual, utilizando 
+                      ferramentas como Figma, Photoshop, Illustrator e WordPress, além de conhecimentos 
+                      sólidos em HTML, CSS e JavaScript.
                     </p>
 
                     <div className="mt-8">
