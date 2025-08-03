@@ -324,10 +324,10 @@ export default function Home() {
                 <span className="text-[#0066cc]">IR</span>
                 <span className="text-[#0066cc]">.</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-400 mb-8">Desenvolvedor Web Fullstack</p>
+              <p className="text-lg sm:text-xl text-gray-400 mb-8">Web Designer</p>
               <div className="flex items-center space-x-4">
                 <div className="w-8 sm:w-12 h-[1px] bg-[#0066cc]" />
-                <span className="text-xs sm:text-sm text-gray-400">Portfólio 2024</span>
+                <span className="text-xs sm:text-sm text-gray-400">Portfólio 2025</span>
               </div>
             </motion.div>
           </div>
