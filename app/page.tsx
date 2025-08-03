@@ -5,8 +5,9 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Canvas } from "@react-three/fiber"
 import { PerspectiveCamera, Environment, Float, OrbitControls } from "@react-three/drei"
-import { Instagram, DribbbleIcon as Behance, Dribbble, ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
+import { Palette as Behance, Github, ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
+import ProjectSlider from "../components/project-slider"
 
 // 3D Model component
 function Model() {
@@ -77,13 +78,15 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [sections])
 
+
+
   // Projects data
   const projects = [
     {
       id: 1,
       title: "Nike Dunk Low 3D",
       description: "Apresentação interativa em 3D do tênis Nike Dunk Low utilizando React, Three.js e TailwindCSS",
-      image: "/shoe-3d-presentation.jpg",
+      video: "/videos/Placeholder.mp4",
       alt: "Nike DunkLow 3D Model",
       year: "2025",
       url: "https://dunk-low-3d-website.vercel.app/"
@@ -92,7 +95,7 @@ export default function Home() {
       id: 2,
       title: "Attriuzen Portfólio",
       description: "Landing page e portfólio musical desenvolvido com React e TailwindCSS para o músico artista Attriuzen",
-      image: "/attriuzen-portfólio.jpg",
+      video: "/videos/Placeholder.mp4",
       alt: "Attriuzen Portfolio",
       year: "2024",
       url: "https://attriuzen-portfolio-odairgsoares-projects.vercel.app/"
@@ -101,19 +104,37 @@ export default function Home() {
       id: 3,
       title: "301digital - Agência de Marketing",
       description: "Sistema completo com painel administrativo personalizado, websites via subdomínio e construtor de sites integrado",
-      image: "/digital-301.jpg",
+      video: "/videos/Placeholder.mp4",
       alt: "301digital Marketing Agency",
-      year: "2023",
+      year: "2022",
       url: "https://301digital.com.br/"
     },
     {
       id: 4,
       title: "Portal Corporativo WordPress",
       description: "Desenvolvimento de tema personalizado e plugins para WordPress",
-      image: "/placeholder.svg?height=990&width=1440",
+      video: "/videos/Placeholder.mp4",
       alt: "WordPress Portal",
       year: "2021",
       url: "https://portal-corporativo.com.br"
+    },
+    {
+      id: 5,
+      title: "E-commerce React",
+      description: "Plataforma de e-commerce completa com carrinho de compras, pagamentos e painel administrativo",
+      video: "/videos/Placeholder.mp4",
+      alt: "E-commerce React",
+      year: "2023",
+      url: "https://ecommerce-example.com"
+    },
+    {
+      id: 6,
+      title: "App Mobile Flutter",
+      description: "Aplicativo mobile multiplataforma desenvolvido com Flutter e integração com APIs REST",
+      video: "/videos/Placeholder.mp4",
+      alt: "Flutter Mobile App",
+      year: "2023",
+      url: "https://flutter-app-example.com"
     }
   ]
 
@@ -140,7 +161,7 @@ export default function Home() {
   const education = [
     {
       title: "Análise e Desenvolvimento de Sistemas",
-      period: "2023 - Presente",
+      period: "2023 - 2025",
       institution: "Centro Universitário Senac"
     },
     {
@@ -153,11 +174,11 @@ export default function Home() {
   // Social links data
   const socialLinks = [
     {
-      url: "https://www.linkedin.com/in/odair-gomes-9baab01ab",
-      icon: <Instagram size={20} />
+      url: "https://github.com/OdairGSoares",
+      icon: <Github size={20} />
     },
     {
-      url: "https://github.com/OdairGSoares",
+      url: "https://www.behance.net/odairgomessoares",
       icon: <Behance size={20} />
     }
   ]
@@ -270,22 +291,22 @@ export default function Home() {
 
         <div className="p-4 flex flex-col items-center space-y-4 border-t border-[#222222]">
           {/* Social icons */}
-          {["instagram", "behance", "dribbble"].map((social, index) => (
+          {["github", "behance"].map((social, index) => (
             <a
               key={social}
-              href={index === 0 ? "https://instagram.com" : index === 1 ? "https://behance.net" : "https://dribbble.com"}
+              href={index === 0 ? "https://github.com/OdairGSoares" : "https://www.behance.net/odairgomessoares"}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-white transition-colors"
             >
-              {index === 0 ? <Instagram size={18} /> : index === 1 ? <Behance size={18} /> : <Dribbble size={18} />}
+              {index === 0 ? <Github size={18} /> : <Behance size={18} />}
             </a>
           ))}
         </div>
       </div>
 
       {/* Main content */}
-      <div className="2xl:ml-[80px] mt-16 2xl:mt-0">
+      <div className="2xl:ml-[80px]">
         {/* HOME section */}
         <section id="home" className="h-screen relative overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -296,7 +317,7 @@ export default function Home() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent z-10" />
 
-          <div className="relative z-20 h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 max-w-2xl">
+          <div className="relative z-20 h-full flex flex-col justify-center items-start px-4 sm:px-8 md:px-16 max-w-2xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4">
                 <span className="text-white">ODA</span>
@@ -333,33 +354,33 @@ export default function Home() {
         </section>
 
         {/* ABOUT section */}
-        <section id="about" className="min-h-screen relative overflow-hidden">
+        <section id="about" className="py-24 relative overflow-hidden mt-16 2xl:mt-0">
           <div className="absolute inset-0 bg-[#111111] z-0" />
 
-          <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 py-24">
+          <div className="relative z-10 px-4 sm:px-8 md:px-16">
             <div className="max-w-4xl">
               <SectionTitle title="Sobre" />
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-16">
-                <div className="xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12">
+                <div className="xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                   <div>
-                    <h2 className="text-4xl font-bold mb-8">
-                      Desenvolvedor Web Fullstack com foco em soluções digitais inovadoras
+                    <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+                      Soluções inovadoras
                     </h2>
 
-                    <p className="text-gray-400 mb-6">
+                    <p className="text-gray-400 mb-4">
                       Olá! Sou Odair Gomes Soares, um desenvolvedor fullstack de 23 anos com paixão por criar experiências web 
                       excepcionais. Combino habilidades técnicas em desenvolvimento com conhecimentos em UI/UX e web design para 
                       entregar soluções completas e inovadoras.
                     </p>
 
-                    <p className="text-gray-400 mb-6">
+                    <p className="text-gray-400 mb-4">
                       Minha jornada começou como designer gráfico, evoluindo para desenvolvimento web fullstack. Hoje, 
-                      especializo-me em criar aplicações web modernas utilizando tecnologias como React, Node.js, SQL e Python, 
+                      me especializo em criar aplicações web modernas utilizando tecnologias como React, Node.js, SQL e Python, 
                       sempre focando em código limpo e experiências de usuário intuitivas.
                     </p>
 
-                    <div className="mt-8">
+                    <div className="mt-6">
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-[1px] bg-[#0066cc]" />
                         <span className="text-sm text-gray-400">odagomess708@gmail.com</span>
@@ -367,10 +388,10 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold mb-4">Experiência</h3>
-                      <div className="space-y-4">
+                      <h3 className="text-lg lg:text-xl font-bold mb-3">Experiência</h3>
+                      <div className="space-y-3">
                         {experiences.map((exp, index) => (
                           <div key={index}>
                             <div className="flex justify-between text-sm mb-1">
@@ -384,12 +405,12 @@ export default function Home() {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold mb-4">Educação</h3>
-                      <div className="space-y-4">
+                      <h3 className="text-lg lg:text-xl font-bold mb-3">Educação</h3>
+                      <div className="space-y-3">
                         {education.map((edu, index) => (
                           <div key={index}>
                             <div className="flex justify-between text-sm mb-1">
-                              <span className="text-white">{edu.title}</span>
+                              <span className="text-white max-w-[150px]">{edu.title}</span>
                               <span className="text-gray-500">{edu.period}</span>
                             </div>
                             <p className="text-gray-400 text-sm">{edu.institution}</p>
@@ -401,7 +422,7 @@ export default function Home() {
                 </div>
 
                 {/* Image Column */}
-                <div className="relative h-full w-full min-h-[400px] xl:min-h-0">
+                <div className="relative h-full w-full min-h-[350px] xl:min-h-0">
                   <div className="absolute inset-0 bg-[#0066cc]/10 z-0" />
                   <img
                     src="/imagem-sobre.webp"
@@ -418,40 +439,20 @@ export default function Home() {
         </section>
 
         {/* PROJECTS section */}
-        <section id="projects" className="min-h-screen relative overflow-hidden">
+        <section id="projects" className="py-32 relative overflow-hidden mt-16 2xl:mt-0">
           <div className="absolute inset-0 bg-[#111111] z-0" />
 
-          <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 py-24">
-            <div className="max-w-6xl">
-              <SectionTitle title="Projetos" />
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {projects.map((project) => (
-                  <a
-                    key={project.id}
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative overflow-hidden block"
-                  >
-                    <div className="aspect-[1440/990] bg-gray-900 overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.alt}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4">{project.description}</p>
-                      <div className="flex items-center">
-                        <div className="w-8 h-[1px] bg-[#0066cc] mr-3" />
-                        <span className="text-xs text-gray-400">{project.year}</span>
-                      </div>
-                    </div>
-                  </a>
-                ))}
+          <div className="relative z-10">
+            {/* Section Title - Centered */}
+            <div className="px-4 sm:px-8 md:px-16 mb-16">
+              <div className="max-w-4xl">
+                <SectionTitle title="Projetos" />
               </div>
+            </div>
+
+            {/* Project Slider - Full Width */}
+            <div className="w-full px-4 sm:px-8 md:px-16">
+              <ProjectSlider projects={projects} />
             </div>
           </div>
 
@@ -459,10 +460,10 @@ export default function Home() {
         </section>
 
         {/* CONTACT section */}
-        <section id="contact" className="min-h-screen relative overflow-hidden">
+        <section id="contact" className="py-32 relative overflow-hidden mt-16 2xl:mt-0">
           <div className="absolute inset-0 bg-[#111111] z-0" />
 
-          <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-8 md:px-16 py-24">
+          <div className="relative z-10 px-4 sm:px-8 md:px-16">
             <div className="max-w-4xl">
               <SectionTitle title="Contato" />
 
