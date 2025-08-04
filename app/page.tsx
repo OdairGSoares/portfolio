@@ -84,57 +84,57 @@ export default function Home() {
   const projects = [
     {
       id: 1,
-      title: "Nike Dunk Low 3D",
-      description: "Apresentação interativa em 3D do tênis Nike Dunk Low utilizando React, Three.js e TailwindCSS",
-      video: "/videos/Placeholder.mp4",
-      alt: "Nike DunkLow 3D Model",
-      year: "2025",
-      url: "https://dunk-low-3d-website.vercel.app/"
+      title: "Mega Loterias",
+      description: "Plataforma web moderna para acompanhar resultados e gerar jogos das principais loterias brasileiras com interface glassmorphism e cores dinâmicas",
+      video: "/videos/Mega.mp4",
+      alt: "Mega Loterias Platform",
+      year: "2023",
+      url: "https://mega-loterias.vercel.app/"
     },
     {
       id: 2,
-      title: "Attriuzen Portfólio",
-      description: "Landing page e portfólio musical desenvolvido com React e TailwindCSS para o músico artista Attriuzen",
-      video: "/videos/Placeholder.mp4",
-      alt: "Attriuzen Portfolio",
-      year: "2024",
-      url: "https://attriuzen-portfolio-odairgsoares-projects.vercel.app/"
+      title: "Care Idosos",
+      description: "Sistema completo de cuidados para idosos com gerenciamento de consultas médicas, medicamentos, contatos de emergência e interface adaptada",
+      video: "/videos/Care.mp4",
+      alt: "Care Idosos System",
+      year: "2025",
+      url: "https://care-idosos.vercel.app/"
     },
     {
       id: 3,
-      title: "301digital - Agência de Marketing",
-      description: "Sistema completo com painel administrativo personalizado, websites via subdomínio e construtor de sites integrado",
-      video: "/videos/Placeholder.mp4",
-      alt: "301digital Marketing Agency",
-      year: "2022",
-      url: "https://301digital.com.br/"
+      title: "Nike 3D Experience",
+      description: "Experiência interativa 3D para explorar produtos Nike com visualização realista, controles interativos e variações de cor em tempo real",
+      video: "/videos/Nike.mp4",
+      alt: "Nike 3D Experience",
+      year: "2024",
+      url: "https://nike-air-display-website.vercel.app/"
     },
     {
       id: 4,
-      title: "Portal Corporativo WordPress",
-      description: "Desenvolvimento de tema personalizado e plugins para WordPress",
-      video: "/videos/Placeholder.mp4",
-      alt: "WordPress Portal",
-      year: "2021",
-      url: "https://portal-corporativo.com.br"
+      title: "File Converter",
+      description: "Conversor de arquivos online com suporte a múltiplos formatos de documentos, vídeos, imagens e áudio com interface moderna",
+      video: "/videos/File.mp4",
+      alt: "File Converter",
+      year: "2023",
+      url: "https://file-converter-blond.vercel.app/"
     },
     {
       id: 5,
-      title: "E-commerce React",
-      description: "Plataforma de e-commerce completa com carrinho de compras, pagamentos e painel administrativo",
-      video: "/videos/Placeholder.mp4",
-      alt: "E-commerce React",
-      year: "2023",
-      url: "https://ecommerce-example.com"
+      title: "MixMaster Portfolio",
+      description: "Portfolio profissional para serviços de mixing e mastering de música com design responsivo e internacionalização",
+      video: "/videos/Mixmaster.mp4",
+      alt: "MixMaster Portfolio",
+      year: "2022",
+      url: "https://mixmaster-portfolio.vercel.app/"
     },
     {
       id: 6,
-      title: "App Mobile Flutter",
-      description: "Aplicativo mobile multiplataforma desenvolvido com Flutter e integração com APIs REST",
-      video: "/videos/Placeholder.mp4",
-      alt: "Flutter Mobile App",
-      year: "2023",
-      url: "https://flutter-app-example.com"
+      title: "Vigor Viv 3D",
+      description: "Site com visualização e interação 3D com produtos da linha Vigor Viv da Batavo, apresentando diversos sabores de forma imersiva",
+      video: "/videos/Viv.mp4",
+      alt: "Vigor Viv 3D",
+      year: "2024",
+      url: "https://yogurt-3d-website.vercel.app/"
     }
   ]
 
