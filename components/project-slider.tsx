@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import OptimizedVideo from "./optimized-video"
 
 // Hook para detectar se é mobile
 const useIsMobile = () => {
@@ -195,22 +196,11 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
                 onClick={handleSliderInteraction}
               >
                 <div className="aspect-[4/3] md:aspect-[1440/990] bg-gray-900 overflow-hidden mx-1 md:mx-2 lg:mx-3">
-                  <video
+                  <OptimizedVideo
                     src={project.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      // Fallback para imagem se o vídeo falhar
-                      const videoElement = e.target as HTMLVideoElement;
-                      const imgElement = document.createElement('img');
-                      imgElement.src = '/placeholder.svg?height=990&width=1440';
-                      imgElement.alt = project.alt;
-                      imgElement.className = 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105';
-                      videoElement.parentNode?.replaceChild(imgElement, videoElement);
-                    }}
+                    alt={project.alt}
+                    className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    poster={`/project-thumbnails/${project.id}.webp`}
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 md:p-6">

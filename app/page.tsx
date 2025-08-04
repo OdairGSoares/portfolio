@@ -1,82 +1,32 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Canvas } from "@react-three/fiber"
-import { PerspectiveCamera, Environment, Float, OrbitControls } from "@react-three/drei"
 import { Palette as Behance, Github, ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 import ProjectSlider from "../components/project-slider"
+import { useActiveSection } from "../hooks/use-optimized-scroll"
+import Dynamic3DScene from "../components/dynamic-3d-scene"
+import ContactForm from "../components/contact-form"
 
-// 3D Model component
-function Model() {
-  return (
-    <Float speed={1.5} rotationIntensity={0.6} floatIntensity={0.6}>
-      <mesh>
-        <torusKnotGeometry args={[1, 0.3, 128, 32]} />
-        <meshStandardMaterial
-          color="#0066cc"
-          metalness={0.8}
-          roughness={0.2}
-          emissive="#003366"
-          emissiveIntensity={0.5}
-        />
-      </mesh>
-    </Float>
-  )
-}
 
-// Scene component
-function Scene() {
-  return (
-    <>
-      <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-      <Model />
-      <Environment preset="city" />
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
-    </>
-  )
-}
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState(0)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const sections = ["HOME", "ABOUT", "PROJECTS", "CONTACT"]
+  const activeSection = useActiveSection(sections)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Handle section navigation
   const goToSection = (index: number) => {
     if (index >= 0 && index < sections.length) {
-      setActiveSection(index)
       scroll.scrollTo(document.getElementById(sections[index].toLowerCase())?.offsetTop || 0, {
         duration: 800,
         smooth: true,
       })
     }
   }
-
-  // Handle scroll events to update active section
-  useEffect(() => {
-    const handleScroll = () => {
-      const sectionElements = sections.map((section) => document.getElementById(section.toLowerCase()))
-      const currentPosition = window.scrollY + window.innerHeight / 3
-
-      sectionElements.forEach((element, index) => {
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (currentPosition >= offsetTop && currentPosition < offsetTop + offsetHeight) {
-            setActiveSection(index)
-          }
-        }
-      })
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [sections])
 
 
 
@@ -189,12 +139,14 @@ export default function Home() {
       <button
         onClick={() => goToSection(activeSection === 0 ? sections.length - 1 : activeSection - 1)}
         className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors"
+        aria-label="Seção anterior"
       >
         <ChevronLeft size={18} />
       </button>
       <button
         onClick={() => goToSection(activeSection === sections.length - 1 ? 0 : activeSection + 1)}
         className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors"
+        aria-label="Próxima seção"
       >
         <ChevronRight size={18} />
       </button>
@@ -220,7 +172,10 @@ export default function Home() {
         </Link>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="text-gray-400 hover:text-white transition-colors"
+          className="text-gray-300 hover:text-white transition-colors"
+          aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -228,7 +183,13 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="2xl:hidden fixed inset-0 bg-black/95 z-40 flex items-center justify-center">
+        <div 
+          id="mobile-menu"
+          className="2xl:hidden fixed inset-0 bg-black/95 z-40 flex items-center justify-center"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu de navegação"
+        >
           <nav className="flex flex-col items-center space-y-8">
             {sections.map((section, index) => (
               <ScrollLink
@@ -238,12 +199,12 @@ export default function Home() {
                 smooth={true}
                 duration={800}
                 onClick={() => {
-                  setActiveSection(index)
                   setIsMobileMenuOpen(false)
                 }}
                 className={`text-2xl font-medium ${
-                  activeSection === index ? "text-[#0066cc]" : "text-gray-400"
+                  activeSection === index ? "text-[#0066cc]" : "text-gray-300"
                 } hover:text-white transition-colors`}
+                aria-label={`Ir para seção ${section}`}
               >
                 {section}
               </ScrollLink>
@@ -271,10 +232,12 @@ export default function Home() {
                 spy={true}
                 smooth={true}
                 duration={800}
-                onClick={() => setActiveSection(index)}
+                onClick={() => {}}
                 className={`w-full flex flex-col items-center justify-center group cursor-pointer ${
-                  activeSection === index ? "text-[#0066cc]" : "text-gray-500"
+                  activeSection === index ? "text-[#0066cc]" : "text-gray-400"
                 }`}
+                aria-label={`Ir para seção ${section}`}
+                aria-current={activeSection === index ? "page" : undefined}
               >
                 <div className="h-12 flex items-center justify-center relative">
                   <span className="text-xs font-medium tracking-widest transform -rotate-90 group-hover:text-white transition-colors absolute whitespace-nowrap">
@@ -297,7 +260,8 @@ export default function Home() {
               href={index === 0 ? "https://github.com/OdairGSoares" : "https://www.behance.net/odairgomessoares"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-white transition-colors"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label={index === 0 ? "Visitar perfil no GitHub" : "Visitar perfil no Behance"}
             >
               {index === 0 ? <Github size={18} /> : <Behance size={18} />}
             </a>
@@ -309,11 +273,7 @@ export default function Home() {
       <div className="2xl:ml-[80px]">
         {/* HOME section */}
         <section id="home" className="h-screen relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Canvas>
-              <Scene />
-            </Canvas>
-          </div>
+          <Dynamic3DScene />
 
           <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent z-10" />
 
@@ -324,7 +284,7 @@ export default function Home() {
                 <span className="text-[#0066cc]">IR</span>
                 <span className="text-[#0066cc]">.</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-400 mb-8">Web Designer</p>
+              <p className="text-lg sm:text-xl text-gray-300 mb-8">Web Designer</p>
               <div className="flex items-center space-x-4">
                 <div className="w-8 sm:w-12 h-[1px] bg-[#0066cc]" />
                 <span className="text-xs sm:text-sm text-gray-400">Portfólio 2025</span>
@@ -368,13 +328,13 @@ export default function Home() {
                       Soluções inovadoras
                     </h2>
 
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-gray-300 mb-4">
                       Olá! Sou Odair Gomes Soares, um desenvolvedor fullstack de 23 anos com paixão por criar experiências web 
                       excepcionais. Combino habilidades técnicas em desenvolvimento com conhecimentos em UI/UX e web design para 
                       entregar soluções completas e inovadoras.
                     </p>
 
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-gray-300 mb-4">
                       Minha jornada começou como designer gráfico, evoluindo para desenvolvimento web fullstack. Hoje, 
                       me especializo em criar aplicações web modernas utilizando tecnologias como React, Node.js, SQL e Python, 
                       sempre focando em código limpo e experiências de usuário intuitivas.
@@ -383,7 +343,7 @@ export default function Home() {
                     <div className="mt-6">
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-[1px] bg-[#0066cc]" />
-                        <span className="text-sm text-gray-400">odagomess708@gmail.com</span>
+                        <span className="text-sm text-gray-300">odagomess708@gmail.com</span>
                       </div>
                     </div>
                   </div>
@@ -398,7 +358,7 @@ export default function Home() {
                               <span className="text-white">{exp.title}</span>
                               <span className="text-gray-500">{exp.period}</span>
                             </div>
-                            <p className="text-gray-400 text-sm">{exp.company}</p>
+                            <p className="text-gray-300 text-sm">{exp.company}</p>
                           </div>
                         ))}
                       </div>
@@ -413,7 +373,7 @@ export default function Home() {
                               <span className="text-white max-w-[150px]">{edu.title}</span>
                               <span className="text-gray-500">{edu.period}</span>
                             </div>
-                            <p className="text-gray-400 text-sm">{edu.institution}</p>
+                            <p className="text-gray-300 text-sm">{edu.institution}</p>
                           </div>
                         ))}
                       </div>
@@ -428,6 +388,7 @@ export default function Home() {
                     src="/imagem-sobre.webp"
                     alt="Odair Gomes Soares"
                     className="w-full h-full object-cover relative z-10"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent z-20" />
                 </div>
@@ -471,7 +432,7 @@ export default function Home() {
                 <div>
                   <h2 className="text-4xl font-bold mb-8">Vamos trabalhar juntos no seu próximo projeto</h2>
 
-                  <p className="text-gray-400 mb-12">
+                  <p className="text-gray-300 mb-12">
                     Estou sempre aberto a novos projetos e oportunidades de colaboração. Se você tem um projeto em mente
                     ou apenas quer bater um papo, não hesite em entrar em contato.
                   </p>
@@ -479,8 +440,8 @@ export default function Home() {
                   <div className="space-y-6">
                     {[
                       { title: "Email", content: <a href="mailto:odagomess708@gmail.com" className="text-[#0066cc] hover:underline">odagomess708@gmail.com</a> },
-                      { title: "Telefone", content: <p className="text-gray-400">(11) 95814-6800</p> },
-                      { title: "Localização", content: <p className="text-gray-400">São Paulo – Zona Sul</p> }
+                      { title: "Telefone", content: <p className="text-gray-300">(11) 95814-6800</p> },
+                      { title: "Localização", content: <p className="text-gray-300">São Paulo – Zona Sul</p> }
                     ].map((item, index) => (
                       <div key={index}>
                         <h3 className="text-lg font-bold mb-2">{item.title}</h3>
@@ -497,7 +458,8 @@ export default function Home() {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-[#0066cc] transition-colors"
+                            className="text-gray-300 hover:text-[#0066cc] transition-colors"
+                            aria-label={index === 0 ? "Visitar perfil no GitHub" : "Visitar perfil no Behance"}
                           >
                             {link.icon}
                           </a>
@@ -508,43 +470,12 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <form className="space-y-6">
-                    {[
-                      { id: "name", label: "Nome", type: "text", placeholder: "Seu nome" },
-                      { id: "email", label: "Email", type: "email", placeholder: "Seu email" }
-                    ].map((field) => (
-                      <div key={field.id}>
-                        <label htmlFor={field.id} className="block text-sm font-medium text-gray-400 mb-2">
-                          {field.label}
-                        </label>
-                        <input
-                          type={field.type}
-                          id={field.id}
-                          className="w-full bg-[#1a1a1a] border border-[#333333] text-white px-4 py-3 focus:outline-none focus:border-[#0066cc] transition-colors"
-                          placeholder={field.placeholder}
-                        />
-                      </div>
-                    ))}
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">
-                        Mensagem
-                      </label>
-                      <textarea
-                        id="message"
-                        rows={5}
-                        className="w-full bg-[#1a1a1a] border border-[#333333] text-white px-4 py-3 focus:outline-none focus:border-[#0066cc] transition-colors"
-                        placeholder="Sua mensagem"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="px-6 py-3 bg-[#0066cc] text-white font-medium hover:bg-[#0055aa] transition-colors"
-                    >
-                      Enviar Mensagem
-                    </button>
-                  </form>
+                  <ContactForm 
+                    onSubmit={(data) => {
+                      console.log('Form submitted:', data)
+                      // Aqui você pode implementar o envio real do formulário
+                    }}
+                  />
                 </div>
               </div>
             </div>

@@ -1,143 +1,172 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Send } from "lucide-react"
 
-export default function ContactForm() {
-  const [formState, setFormState] = useState({
+interface ContactFormProps {
+  onSubmit?: (data: { name: string; email: string; message: string }) => void
+}
+
+export default function ContactForm({ onSubmit }: ContactFormProps) {
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    message: ""
   })
-
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    })
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Nome é obrigatório"
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email é obrigatório"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Email inválido"
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Mensagem é obrigatória"
+    } else if (formData.message.length < 10) {
+      newErrors.message = "Mensagem deve ter pelo menos 10 caracteres"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!validateForm()) return
+
     setIsSubmitting(true)
-
-    // Simulate form submission
-    setTimeout(() => {
+    
+    try {
+      // Simular envio do formulário
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      if (onSubmit) {
+        onSubmit(formData)
+      }
+      
+      // Limpar formulário
+      setFormData({ name: "", email: "", message: "" })
+      setErrors({})
+      
+      // Mostrar mensagem de sucesso
+      alert("Mensagem enviada com sucesso!")
+    } catch (error) {
+      alert("Erro ao enviar mensagem. Tente novamente.")
+    } finally {
       setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormState({ name: "", email: "", message: "" })
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 5000)
-    }, 1500)
+    }
   }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    
+    // Limpar erro do campo quando o usuário começa a digitar
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }))
+    }
+  }
+
+  const fields = [
+    { id: "name", label: "Nome", type: "text", placeholder: "Seu nome" },
+    { id: "email", label: "Email", type: "email", placeholder: "Seu email" }
+  ]
 
   return (
-    <motion.div
-      className="bg-gray-900/50 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-800"
-      initial={{ opacity: 0, x: 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      {isSubmitted ? (
-        <motion.div
-          className="flex flex-col items-center justify-center h-full text-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 text-green-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 className="text-2xl font-bold mb-2">Mensagem Enviada!</h3>
-          <p className="text-gray-300">Obrigado pelo seu contato. Responderei o mais breve possível.</p>
-        </motion.div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Nome
-            </label>
-            <Input
-              id="name"
-              name="name"
-              value={formState.name}
-              onChange={handleChange}
-              required
-              className="bg-gray-800/50 border-gray-700 focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email
-            </label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={formState.email}
-              onChange={handleChange}
-              required
-              className="bg-gray-800/50 border-gray-700 focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2">
-              Mensagem
-            </label>
-            <Textarea
-              id="message"
-              name="message"
-              value={formState.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="bg-gray-800/50 border-gray-700 focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
-
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+      {fields.map((field) => (
+        <div key={field.id}>
+          <label 
+            htmlFor={field.id} 
+            className="block text-sm font-medium text-gray-300 mb-2"
           >
-            {isSubmitting ? (
-              <>
-                <Send className="mr-2 h-4 w-4 animate-spin" />
-                Enviando...
-              </>
-            ) : (
-              <>
-                <Send className="mr-2 h-4 w-4" />
-                Enviar Mensagem
-              </>
-            )}
-          </Button>
-        </form>
+            {field.label}
+          </label>
+          <input
+            type={field.type}
+            id={field.id}
+            name={field.id}
+            value={formData[field.id as keyof typeof formData]}
+            onChange={(e) => handleInputChange(field.id, e.target.value)}
+            className={`w-full bg-[#1a1a1a] border text-white px-4 py-3 focus:outline-none focus:border-[#0066cc] transition-colors ${
+              errors[field.id] ? 'border-red-500' : 'border-[#333333]'
+            }`}
+            placeholder={field.placeholder}
+            aria-describedby={errors[field.id] ? `${field.id}-error` : undefined}
+            aria-invalid={!!errors[field.id]}
+            required
+          />
+          {errors[field.id] && (
+            <p 
+              id={`${field.id}-error`} 
+              className="mt-1 text-sm text-red-400"
+              role="alert"
+            >
+              {errors[field.id]}
+            </p>
+          )}
+        </div>
+      ))}
+
+      <div>
+        <label 
+          htmlFor="message" 
+          className="block text-sm font-medium text-gray-300 mb-2"
+        >
+          Mensagem
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          value={formData.message}
+          onChange={(e) => handleInputChange("message", e.target.value)}
+          className={`w-full bg-[#1a1a1a] border text-white px-4 py-3 focus:outline-none focus:border-[#0066cc] transition-colors ${
+            errors.message ? 'border-red-500' : 'border-[#333333]'
+          }`}
+          placeholder="Sua mensagem"
+          aria-describedby={errors.message ? "message-error" : undefined}
+          aria-invalid={!!errors.message}
+          required
+        />
+        {errors.message && (
+          <p 
+            id="message-error" 
+            className="mt-1 text-sm text-red-400"
+            role="alert"
+          >
+            {errors.message}
+          </p>
+        )}
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className={`px-6 py-3 font-medium transition-colors ${
+          isSubmitting 
+            ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#0066cc] text-white hover:bg-[#0055aa]'
+        }`}
+        aria-describedby={isSubmitting ? "submitting-status" : undefined}
+      >
+        {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+      </button>
+      
+      {isSubmitting && (
+        <p id="submitting-status" className="text-sm text-gray-400">
+          Enviando sua mensagem...
+        </p>
       )}
-    </motion.div>
+    </form>
   )
 }
 
