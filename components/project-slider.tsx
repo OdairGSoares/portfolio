@@ -206,8 +206,8 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 md:p-6">
                   <h3 className="text-sm md:text-xl font-bold mb-1 md:mb-2">{project.title}</h3>
                   <p className="text-gray-300 text-xs md:text-sm mb-2 md:mb-4 line-clamp-2 md:line-clamp-none">{project.description}</p>
-                  <div className="flex items-center">
-                    <div className="w-4 md:w-8 h-[1px] bg-[#0066cc] mr-2 md:mr-3" />
+                                      <div className="flex items-center">
+                      <div className="w-4 md:w-8 h-[1px] bg-[#4da6ff] mr-2 md:mr-3" />
                     <span className="text-xs text-gray-300">{project.year}</span>
                   </div>
                 </div>
@@ -225,7 +225,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
               prevSlide()
               handleSliderInteraction()
             }}
-            className="w-8 h-8 md:w-12 md:h-12 border border-gray-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors"
+            className="w-8 h-8 md:w-12 md:h-12 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
             aria-label="Projeto anterior"
           >
             <ChevronLeft size={16} className="md:w-5 md:h-5" />
@@ -244,7 +244,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
                   (isMobile 
                     ? activeProjectIndex === index 
                     : (index === 0 && activeProjectIndex === 0) || (index === 1 && activeProjectIndex === 3))
-                    ? 'bg-[#0066cc] shadow-lg shadow-[#0066cc]/50' 
+                    ? 'bg-[#4da6ff] shadow-lg shadow-[#4da6ff]/50' 
                     : 'bg-gray-400 hover:bg-gray-300'
                 }`}
                 aria-label={`Ir para projeto ${index + 1}`}
@@ -260,7 +260,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
               nextSlide()
               handleSliderInteraction()
             }}
-            className="w-8 h-8 md:w-12 md:h-12 border border-gray-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors"
+            className="w-8 h-8 md:w-12 md:h-12 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
             aria-label="Próximo projeto"
           >
             <ChevronRight size={16} className="md:w-5 md:h-5" />

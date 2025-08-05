@@ -139,14 +139,14 @@ export default function Home() {
     <div className="hidden 2xl:flex absolute bottom-24 right-10 z-20 items-center space-x-4">
       <button
         onClick={() => goToSection(activeSection === 0 ? sections.length - 1 : activeSection - 1)}
-        className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors"
+        className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
         aria-label="Seção anterior"
       >
         <ChevronLeft size={18} />
       </button>
       <button
         onClick={() => goToSection(activeSection === sections.length - 1 ? 0 : activeSection + 1)}
-        className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors"
+        className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
         aria-label="Próxima seção"
       >
         <ChevronRight size={18} />
@@ -157,7 +157,7 @@ export default function Home() {
   // Section title component
   const SectionTitle = ({ title }: { title: string }) => (
     <div className="flex items-center mb-12">
-      <div className="w-12 h-[1px] bg-[#0066cc] mr-4" />
+             <div className="w-12 h-[1px] bg-[#4da6ff] mr-4" />
       <span className="text-sm text-gray-300 uppercase tracking-widest">{title}</span>
     </div>
   )
@@ -167,7 +167,7 @@ export default function Home() {
       {/* Mobile Header - Only visible below 1440px */}
       <div className="2xl:hidden fixed top-0 left-0 right-0 h-16 bg-[#0a0a0a] z-50 flex items-center justify-between px-4 border-b border-[#222222]">
         <Link href="/" className="block">
-          <div className="w-10 h-10 bg-[#0066cc] flex items-center justify-center">
+          <div className="w-10 h-10 bg-[#4da6ff] flex items-center justify-center">
             <span className="font-bold text-lg">OS</span>
           </div>
         </Link>
@@ -202,9 +202,9 @@ export default function Home() {
                 onClick={() => {
                   setIsMobileMenuOpen(false)
                 }}
-                className={`text-2xl font-medium ${
-                  activeSection === index ? "text-[#0066cc]" : "text-gray-300"
-                } hover:text-white transition-colors`}
+                                 className={`text-2xl font-medium ${
+                   activeSection === index ? "text-[#4da6ff]" : "text-gray-300"
+                 } hover:text-white transition-colors`}
                 aria-label={`Ir para seção ${section}`}
               >
                 {section}
@@ -218,7 +218,7 @@ export default function Home() {
       <div className="hidden 2xl:flex fixed left-0 top-0 bottom-0 w-[80px] bg-[#0a0a0a] z-50 flex-col">
         <div className="p-4 border-b border-[#222222]">
           <Link href="/" className="block w-10 h-10">
-            <div className="w-10 h-10 bg-[#0066cc] flex items-center justify-center">
+            <div className="w-10 h-10 bg-[#4da6ff] flex items-center justify-center">
               <span className="font-bold text-lg">OS</span>
             </div>
           </Link>
@@ -234,9 +234,9 @@ export default function Home() {
                 smooth={true}
                 duration={800}
                 onClick={() => {}}
-                                 className={`w-full flex flex-col items-center justify-center group cursor-pointer ${
-                   activeSection === index ? "text-[#0066cc]" : "text-gray-300"
-                 }`}
+                                                                  className={`w-full flex flex-col items-center justify-center group cursor-pointer ${
+                    activeSection === index ? "text-[#4da6ff]" : "text-gray-300"
+                  }`}
                 aria-label={`Ir para seção ${section}`}
                 aria-current={activeSection === index ? "page" : undefined}
               >
@@ -246,7 +246,7 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="h-12 flex items-center justify-center mt-2">
-                  <div className={`w-1 h-6 ${activeSection === index ? "bg-[#0066cc]" : "bg-transparent"}`} />
+                                     <div className={`w-1 h-6 ${activeSection === index ? "bg-[#4da6ff]" : "bg-transparent"}`} />
                 </div>
               </ScrollLink>
             ))}
@@ -280,14 +280,14 @@ export default function Home() {
 
           <div className="relative z-20 h-full flex flex-col justify-center items-start px-4 sm:px-8 md:px-16 max-w-2xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4">
-                <span className="text-white">ODA</span>
-                <span className="text-[#0066cc]">IR</span>
-                <span className="text-[#0066cc]">.</span>
-              </h1>
+                             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4">
+                 <span className="text-white">ODA</span>
+                 <span className="text-[#4da6ff]">IR</span>
+                 <span className="text-[#4da6ff]">.</span>
+               </h1>
               <p className="text-lg sm:text-xl text-gray-300 mb-8">Web Designer</p>
               <div className="flex items-center space-x-4">
-                <div className="w-8 sm:w-12 h-[1px] bg-[#0066cc]" />
+                                 <div className="w-8 sm:w-12 h-[1px] bg-[#4da6ff]" />
                                  <span className="text-xs sm:text-sm text-gray-300">Portfólio 2025</span>
               </div>
             </motion.div>
@@ -302,8 +302,8 @@ export default function Home() {
             >
                              <span className="text-xs text-gray-300 mb-2">ROLAR PARA BAIXO</span>
               <div className="w-5 h-10 border border-gray-600 rounded-full flex justify-center">
-                <motion.div
-                  className="w-1 h-1 bg-[#0066cc] rounded-full mt-2"
+                                 <motion.div
+                   className="w-1 h-1 bg-[#4da6ff] rounded-full mt-2"
                   animate={{ y: [0, 12, 0] }}
                   transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
                 />
@@ -343,7 +343,7 @@ export default function Home() {
 
                     <div className="mt-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-[1px] bg-[#0066cc]" />
+                                                 <div className="w-12 h-[1px] bg-[#4da6ff]" />
                         <span className="text-sm text-gray-300">odagomess708@gmail.com</span>
                       </div>
                     </div>
@@ -384,7 +384,7 @@ export default function Home() {
 
                 {/* Image Column */}
                 <div className="relative h-full w-full min-h-[350px] xl:min-h-0">
-                  <div className="absolute inset-0 bg-[#0066cc]/10 z-0" />
+                                     <div className="absolute inset-0 bg-[#4da6ff]/10 z-0" />
                   <img
                     src="/imagem-sobre.webp"
                     alt="Odair Gomes Soares"
@@ -441,7 +441,7 @@ export default function Home() {
 
                   <div className="space-y-6">
                     {[
-                                             { title: "Email", content: <a href="mailto:odagomess708@gmail.com" className="text-[#0066cc] hover:underline font-semibold">odagomess708@gmail.com</a> },
+                                             { title: "Email", content: <a href="mailto:odagomess708@gmail.com" className="text-[#4da6ff] hover:underline font-semibold">odagomess708@gmail.com</a> },
                       { title: "Telefone", content: <p className="text-gray-300">(11) 95814-6800</p> },
                       { title: "Localização", content: <p className="text-gray-300">São Paulo – Zona Sul</p> }
                     ].map((item, index) => (
@@ -460,7 +460,7 @@ export default function Home() {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-300 hover:text-[#0066cc] transition-colors"
+                                                         className="text-gray-300 hover:text-[#4da6ff] transition-colors"
                             aria-label={index === 0 ? "Visitar perfil no GitHub" : "Visitar perfil no Behance"}
                           >
                             {link.icon}
