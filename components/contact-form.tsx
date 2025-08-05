@@ -151,7 +151,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`px-6 py-3 font-medium transition-colors ${
+        className={`px-8 py-4 md:px-6 md:py-3 font-medium transition-colors ${
           isSubmitting 
             ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
             : 'bg-[#0066cc] text-white hover:bg-[#0055aa]'

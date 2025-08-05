@@ -219,7 +219,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
 
       {/* Slider Navigation */}
       {hasNavigation && (
-        <div className="flex justify-center items-center mt-8 md:mt-12 space-x-2 md:space-x-4">
+        <div className="flex justify-center items-center mt-8 md:mt-12 space-x-4 md:space-x-4">
           <button
             onClick={() => {
               prevSlide()
@@ -232,7 +232,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
           </button>
           
           {/* Slide Indicators */}
-          <div className="flex space-x-2 md:space-x-3">
+          <div className="flex space-x-3 md:space-x-3">
             {Array.from({ length: isMobile ? projects.length : 2 }, (_, index) => (
               <button
                 key={index}
@@ -240,7 +240,7 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
                   goToSlide(index)
                   handleSliderInteraction()
                 }}
-                className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
+                className={`w-8 h-8 md:w-4 md:h-4 rounded-full transition-all duration-300 flex items-center justify-center ${
                   (isMobile 
                     ? activeProjectIndex === index 
                     : (index === 0 && activeProjectIndex === 0) || (index === 1 && activeProjectIndex === 3))
@@ -251,7 +251,18 @@ export default function ProjectSlider({ projects }: ProjectSliderProps) {
                 aria-current={(isMobile 
                   ? activeProjectIndex === index 
                   : (index === 0 && activeProjectIndex === 0) || (index === 1 && activeProjectIndex === 3)) ? "true" : "false"}
-              />
+              >
+                {/* Indicador visual para mobile */}
+                {isMobile && (
+                  <div className={`w-2 h-2 md:w-1 md:h-1 rounded-full ${
+                    (isMobile 
+                      ? activeProjectIndex === index 
+                      : (index === 0 && activeProjectIndex === 0) || (index === 1 && activeProjectIndex === 3))
+                        ? 'bg-white' 
+                        : 'bg-gray-600'
+                  }`} />
+                )}
+              </button>
             ))}
           </div>
 

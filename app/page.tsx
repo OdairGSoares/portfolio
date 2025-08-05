@@ -139,14 +139,14 @@ export default function Home() {
     <div className="hidden 2xl:flex absolute bottom-24 right-10 z-20 items-center space-x-4">
       <button
         onClick={() => goToSection(activeSection === 0 ? sections.length - 1 : activeSection - 1)}
-        className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
+        className="w-12 h-12 md:w-10 md:h-10 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
         aria-label="Seção anterior"
       >
         <ChevronLeft size={18} />
       </button>
       <button
         onClick={() => goToSection(activeSection === sections.length - 1 ? 0 : activeSection + 1)}
-        className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
+        className="w-12 h-12 md:w-10 md:h-10 border border-gray-700 flex items-center justify-center hover:border-[#4da6ff] hover:text-[#4da6ff] transition-colors"
         aria-label="Próxima seção"
       >
         <ChevronRight size={18} />
@@ -173,7 +173,7 @@ export default function Home() {
         </Link>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="text-gray-300 hover:text-white transition-colors"
+          className="p-2 text-gray-300 hover:text-white transition-colors"
           aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
@@ -202,7 +202,7 @@ export default function Home() {
                 onClick={() => {
                   setIsMobileMenuOpen(false)
                 }}
-                className={`text-2xl font-medium ${
+                className={`text-2xl font-medium px-4 py-2 ${
                   activeSection === index ? "text-[#4da6ff]" : "text-gray-300"
                 } hover:text-white transition-colors`}
                 aria-label={`Ir para seção ${section}`}
