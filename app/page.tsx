@@ -8,6 +8,7 @@ import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 import ProjectSlider from "../components/project-slider"
 import { useActiveSection } from "../hooks/use-optimized-scroll"
 import Dynamic3DScene from "../components/dynamic-3d-scene"
+import AboutImage from "../components/about-image"
 import ContactForm from "../components/contact-form"
 
 
@@ -389,6 +390,7 @@ export default function Home() {
                     alt="Odair Gomes Soares"
                     className="w-full h-full object-cover relative z-10"
                     loading="lazy"
+                    width={500}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent z-20" />
                 </div>

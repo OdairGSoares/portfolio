@@ -60,7 +60,7 @@ export default function OptimizedVideo({
     return (
       <div className={`relative ${className}`}>
         <Image
-          src={poster || "/placeholder.svg"}
+          src={poster || "/project-thumbnails/video-placeholder.webp"}
           alt={alt}
           fill
           className="object-cover"
@@ -87,7 +87,6 @@ export default function OptimizedVideo({
           }`}
           onLoadedData={handleVideoLoad}
           onError={handleVideoError}
-          loading="lazy"
           preload="metadata"
         />
       )}
