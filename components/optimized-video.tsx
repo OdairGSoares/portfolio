@@ -60,7 +60,7 @@ export default function OptimizedVideo({
     return (
       <div className={`relative ${className}`}>
         <Image
-          src={poster || "/project-thumbnails/video-placeholder.webp"}
+          src={poster || "/project-thumbnails/video-placeholder.svg"}
           alt={alt}
           fill
           className="object-cover"

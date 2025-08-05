@@ -8,7 +8,7 @@ import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"
 import ProjectSlider from "../components/project-slider"
 import { useActiveSection } from "../hooks/use-optimized-scroll"
 import Dynamic3DScene from "../components/dynamic-3d-scene"
-import AboutImage from "../components/about-image"
+
 import ContactForm from "../components/contact-form"
 
 
@@ -158,7 +158,7 @@ export default function Home() {
   const SectionTitle = ({ title }: { title: string }) => (
     <div className="flex items-center mb-12">
       <div className="w-12 h-[1px] bg-[#0066cc] mr-4" />
-      <span className="text-sm text-gray-400 uppercase tracking-widest">{title}</span>
+      <span className="text-sm text-gray-300 uppercase tracking-widest">{title}</span>
     </div>
   )
 
@@ -234,9 +234,9 @@ export default function Home() {
                 smooth={true}
                 duration={800}
                 onClick={() => {}}
-                className={`w-full flex flex-col items-center justify-center group cursor-pointer ${
-                  activeSection === index ? "text-[#0066cc]" : "text-gray-400"
-                }`}
+                                 className={`w-full flex flex-col items-center justify-center group cursor-pointer ${
+                   activeSection === index ? "text-[#0066cc]" : "text-gray-300"
+                 }`}
                 aria-label={`Ir para seção ${section}`}
                 aria-current={activeSection === index ? "page" : undefined}
               >
@@ -261,7 +261,7 @@ export default function Home() {
               href={index === 0 ? "https://github.com/OdairGSoares" : "https://www.behance.net/odairgomessoares"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
+                             className="text-gray-300 hover:text-white transition-colors"
               aria-label={index === 0 ? "Visitar perfil no GitHub" : "Visitar perfil no Behance"}
             >
               {index === 0 ? <Github size={18} /> : <Behance size={18} />}
@@ -288,7 +288,7 @@ export default function Home() {
               <p className="text-lg sm:text-xl text-gray-300 mb-8">Web Designer</p>
               <div className="flex items-center space-x-4">
                 <div className="w-8 sm:w-12 h-[1px] bg-[#0066cc]" />
-                <span className="text-xs sm:text-sm text-gray-400">Portfólio 2025</span>
+                                 <span className="text-xs sm:text-sm text-gray-300">Portfólio 2025</span>
               </div>
             </motion.div>
           </div>
@@ -300,7 +300,7 @@ export default function Home() {
               transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
               className="flex flex-col items-center"
             >
-              <span className="text-xs text-gray-400 mb-2">ROLAR PARA BAIXO</span>
+                             <span className="text-xs text-gray-300 mb-2">ROLAR PARA BAIXO</span>
               <div className="w-5 h-10 border border-gray-600 rounded-full flex justify-center">
                 <motion.div
                   className="w-1 h-1 bg-[#0066cc] rounded-full mt-2"
@@ -355,10 +355,10 @@ export default function Home() {
                       <div className="space-y-3">
                         {experiences.map((exp, index) => (
                           <div key={index}>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span className="text-white">{exp.title}</span>
-                              <span className="text-gray-500">{exp.period}</span>
-                            </div>
+                                                         <div className="flex justify-between text-sm mb-1">
+                               <span className="text-white">{exp.title}</span>
+                                                               <span className="text-gray-200">{exp.period}</span>
+                             </div>
                             <p className="text-gray-300 text-sm">{exp.company}</p>
                           </div>
                         ))}
@@ -370,10 +370,10 @@ export default function Home() {
                       <div className="space-y-3">
                         {education.map((edu, index) => (
                           <div key={index}>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span className="text-white max-w-[150px]">{edu.title}</span>
-                              <span className="text-gray-500">{edu.period}</span>
-                            </div>
+                                                         <div className="flex justify-between text-sm mb-1">
+                               <span className="text-white max-w-[150px]">{edu.title}</span>
+                                                               <span className="text-gray-200">{edu.period}</span>
+                             </div>
                             <p className="text-gray-300 text-sm">{edu.institution}</p>
                           </div>
                         ))}
@@ -441,7 +441,7 @@ export default function Home() {
 
                   <div className="space-y-6">
                     {[
-                      { title: "Email", content: <a href="mailto:odagomess708@gmail.com" className="text-[#0066cc] hover:underline">odagomess708@gmail.com</a> },
+                                             { title: "Email", content: <a href="mailto:odagomess708@gmail.com" className="text-[#0066cc] hover:underline font-semibold">odagomess708@gmail.com</a> },
                       { title: "Telefone", content: <p className="text-gray-300">(11) 95814-6800</p> },
                       { title: "Localização", content: <p className="text-gray-300">São Paulo – Zona Sul</p> }
                     ].map((item, index) => (
@@ -488,10 +488,10 @@ export default function Home() {
           {/* Footer */}
           <div className="absolute bottom-0 left-0 right-0 border-t border-[#222222] py-4 px-16 z-20">
             <div className="flex justify-between items-center">
-              <div className="text-xs text-gray-500">
-                © {new Date().getFullYear()} Odair Gomes Soares. Todos os direitos reservados.
-              </div>
-              <div className="text-xs text-gray-500">Desenvolvido com ♥ por Odair</div>
+                             <div className="text-xs text-gray-300">
+                 © {new Date().getFullYear()} Odair Gomes Soares. Todos os direitos reservados.
+               </div>
+               <div className="text-xs text-gray-300">Desenvolvido com ♥ por Odair</div>
             </div>
           </div>
         </section>
