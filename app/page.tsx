@@ -35,15 +35,6 @@ export default function Home() {
   const projects = [
     {
       id: 1,
-      title: "Mega Loterias",
-      description: "Plataforma web moderna para acompanhar resultados e gerar jogos das principais loterias brasileiras com interface glassmorphism e cores dinâmicas",
-      video: "/videos/Mega.mp4",
-      alt: "Mega Loterias Platform",
-      year: "2023",
-      url: "https://mega-loterias.vercel.app/"
-    },
-    {
-      id: 2,
       title: "Care Idosos",
       description: "Sistema completo de cuidados para idosos com gerenciamento de consultas médicas, medicamentos, contatos de emergência e interface adaptada",
       video: "/videos/Care.mp4",
@@ -52,13 +43,22 @@ export default function Home() {
       url: "https://care-idosos.vercel.app/"
     },
     {
+      id: 2,
+      title: "MixMaster Portfolio",
+      description: "Portfolio profissional para serviços de mixing e mastering de música com design responsivo e internacionalização",
+      video: "/videos/Mixmaster.mp4",
+      alt: "MixMaster Portfolio",
+      year: "2022",
+      url: "https://mixmaster-portfolio.vercel.app/"
+    },
+    {
       id: 3,
-      title: "Nike 3D Experience",
-      description: "Experiência interativa 3D para explorar produtos Nike com visualização realista, controles interativos e variações de cor em tempo real",
-      video: "/videos/Nike.mp4",
-      alt: "Nike 3D Experience",
-      year: "2024",
-      url: "https://nike-air-display-website.vercel.app/"
+      title: "Mega Loterias",
+      description: "Plataforma web moderna para acompanhar resultados e gerar jogos das principais loterias brasileiras com interface glassmorphism e cores dinâmicas",
+      video: "/videos/Mega.mp4",
+      alt: "Mega Loterias Platform",
+      year: "2023",
+      url: "https://mega-loterias.vercel.app/"
     },
     {
       id: 4,
@@ -71,12 +71,12 @@ export default function Home() {
     },
     {
       id: 5,
-      title: "MixMaster Portfolio",
-      description: "Portfolio profissional para serviços de mixing e mastering de música com design responsivo e internacionalização",
-      video: "/videos/Mixmaster.mp4",
-      alt: "MixMaster Portfolio",
-      year: "2022",
-      url: "https://mixmaster-portfolio.vercel.app/"
+      title: "Nike 3D Experience",
+      description: "Experiência interativa 3D para explorar produtos Nike com visualização realista, controles interativos e variações de cor em tempo real",
+      video: "/videos/Nike.mp4",
+      alt: "Nike 3D Experience",
+      year: "2024",
+      url: "https://nike-air-display-website.vercel.app/"
     },
     {
       id: 6,
