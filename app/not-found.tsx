@@ -6,7 +6,7 @@ export default function NotFound() {
         <p className="text-xl text-gray-400 mb-8">Página não encontrada</p>
         <a 
           href="/" 
-          className="px-6 py-3 bg-[#0066cc] text-white font-medium hover:bg-[#0055aa] transition-colors"
+          className="px-6 py-3 bg-[#4da6ff] text-white font-medium hover:bg-[#3d8fcc] transition-colors"
         >
           Voltar ao início
         </a>

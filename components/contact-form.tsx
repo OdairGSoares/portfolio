@@ -96,9 +96,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             name={field.id}
             value={formData[field.id as keyof typeof formData]}
             onChange={(e) => handleInputChange(field.id, e.target.value)}
-            className={`w-full bg-[#1a1a1a] border text-white px-4 py-3 focus:outline-none focus:border-[#0066cc] transition-colors ${
-              errors[field.id] ? 'border-red-500' : 'border-[#333333]'
-            }`}
+                             className={`w-full bg-[#1a1a1a] border text-white px-4 py-3 focus:outline-none focus:border-[#4da6ff] transition-colors ${
+                   errors[field.id] ? 'border-red-500' : 'border-[#333333]'
+                 }`}
             placeholder={field.placeholder}
             aria-describedby={errors[field.id] ? `${field.id}-error` : undefined}
             aria-invalid={!!errors[field.id]}
@@ -129,9 +129,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           rows={5}
           value={formData.message}
           onChange={(e) => handleInputChange("message", e.target.value)}
-          className={`w-full bg-[#1a1a1a] border text-white px-4 py-3 focus:outline-none focus:border-[#0066cc] transition-colors ${
-            errors.message ? 'border-red-500' : 'border-[#333333]'
-          }`}
+                         className={`w-full bg-[#1a1a1a] border text-white px-4 py-3 focus:outline-none focus:border-[#4da6ff] transition-colors ${
+                 errors.message ? 'border-red-500' : 'border-[#333333]'
+               }`}
           placeholder="Sua mensagem"
           aria-describedby={errors.message ? "message-error" : undefined}
           aria-invalid={!!errors.message}
