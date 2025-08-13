@@ -71,12 +71,12 @@ export default function Home() {
     },
     {
       id: 5,
-      title: "Nike 3D Experience",
-      description: "Experiência interativa 3D para explorar produtos Nike com visualização realista, controles interativos e variações de cor em tempo real",
+      title: "Nike Experience",
+      description: "Experiência interativa para explorar produtos Nike com visualização realista, controles interativos e variações de cor em tempo real",
       video: "/videos/Nike.mp4",
-      alt: "Nike 3D Experience",
+      alt: "Nike Experience",
       year: "2024",
-      url: "https://nike-air-display-website.vercel.app/"
+      url: "https://display-nike.vercel.app/"
     },
     {
       id: 6,
